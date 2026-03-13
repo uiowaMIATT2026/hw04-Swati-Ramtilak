@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<executable>
+    <category>MIATT.HW04.sramtilak</category>
+    <title>CurvatureAD_sramtilak</title>
+    <description>Curvature Anisotropic Diffusion</description>
+    <version>1.0</version>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <license>Apache 2.0</license>
+    <contributor>Swati Ramtilak</contributor>
+
+    <parameters>
+        <label>Input-Output</label>
+        <description>Input and output volumes</description>
+
+        <image>
+            <name>inputVolume</name>
+            <longflag>inputVolume</longflag>
+            <label>Input Volume</label>
+            <channel>input</channel>
+            <description>Input image</description>
+        </image>
+
+        <image>
+            <name>outputVolume</name>
+            <longflag>outputVolume</longflag>
+            <label>Output Volume</label>
+            <channel>output</channel>
+            <description>Output image</description>
+        </image>
+    </parameters>
+
+    <parameters>
+        <label>Filtering</label>
+        <description>Diffusion parameters</description>
+
+        <double>
+            <name>conductance</name>
+            <longflag>conductance</longflag>
+            <label>Conductance</label>
+            <description>Conductance parameter</description>
+        </double>
+
+        <double>
+            <name>timeStep</name>
+            <longflag>timeStep</longflag>
+            <label>Time Step</label>
+            <description>Time step</description>
+        </double>
+
+        <integer>
+            <name>iterations</name>
+            <longflag>iterations</longflag>
+            <label>Iterations</label>
+            <description>Number of iterations</description>
+        </integer>
+
+    </parameters>
+
+</executable>
