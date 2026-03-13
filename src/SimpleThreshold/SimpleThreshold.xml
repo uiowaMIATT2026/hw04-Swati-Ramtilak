@@ -1,69 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <executable>
-    <category>MIATT.HW04.hawkidhereXXXX</category>
-    <title>make a good title here XXXX</title>
-    <description>
-        Does something astonishing
-    </description>
-    <version>97.0</version>
-    <documentation-url></documentation-url>
-    <license></license>
-    <contributor>Hans J. Johnson</contributor>
+    <category>MIATT.HW04.sramtilak</category>
+    <title>SimpleThreshold_sramtilak</title>
+    <description>Simple Threshold Filter</description>
+    <version>1.0</version>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git/main/src/SimpleThreshold</documentation-url>
+    <license>Apache 2.0</license>
+    <contributor>Swati Ramtilak</contributor>
 
     <parameters>
-        <label>
-            Threshold Parameters
-        </label>
-        <description>
-            Parameters for..
-        </description>
+        <label>Input-Output</label>
+        <description>Input and output volume parameters</description>
+
+        <image>
+            <name>inputVolume</name>
+            <longflag>inputVolume</longflag>
+            <label>Input-Volume</label>
+            <channel>input</channel>
+            <description>3D NIFTI image</description>
+        </image>
+
+        <image>
+            <name>outputVolume</name>
+            <longflag>outputVolume</longflag>
+            <label>Output-Volume</label>
+            <channel>output</channel>
+            <description>3D NIFTI image</description>
+        </image>
+
+    </parameters>
+
+    <parameters>
+        <label>Thresholding-Parameters</label>
+        <description>Thresholding parameters</description>
 
         <double>
-            <name>ts</name>
-            <longflag>ts</longflag>
-            <description>unknown</description>
-            <label>A really good label</label>
-            <default>0.0625</default>
-            <constraints>
-                <minimum>.001</minimum>
-                <maximum>1</maximum>
-                <step>.001</step>
-            </constraints>
+            <name>lowThreshold</name>
+            <longflag>lowThreshold</longflag>
+            <label>Low-Threshold</label>
+            <description>The lower threshold value</description>
         </double>
 
-        <integer>
-            <name>numberOfIterations</name>
-            <longflag>iterations</longflag>
-            <description>Number of iterations</description>
-            <label>Iterations</label>
-            <default>1</default>
-            <constraints>
-                <minimum>1</minimum>
-                <maximum>30</maximum>
-                <step>1</step>
-            </constraints>
-        </integer>
+        <double>
+            <name>highThreshold</name>
+            <longflag>highThreshold</longflag>
+            <label>High-Threshold</label>
+            <description>The upper threshold value</description>
+        </double>
+
+        <double>
+            <name>outsideValue</name>
+            <longflag>outsideValue</longflag>
+            <label>Outside-Value</label>
+            <description>Value for pixels outside threshold range</description>
+        </double>
+
+        <double>
+            <name>insideValue</name>
+            <longflag>insideValue</longflag>
+            <label>Inside-Value</label>
+            <description>Value for pixels inside threshold range</description>
+        </double>
 
     </parameters>
-
-    <parameters>
-        <label>IO</label>
-        <description>Input/output parameters</description>
-        <image>
-            <name>input</name>
-            <longflag>inputVolume</longflag>
-            <label>Input Volume</label>
-            <channel>input</channel>
-            <description>Input volume to be filtered</description>
-        </image>
-        <image>
-            <name>output</name>
-            <longflag>outputVolume</longflag>
-            <label>Output Volume</label>
-            <channel>output</channel>
-            <description>Output filtered</description>
-        </image>
-    </parameters>
-
-    <-- Other parameters here -->
 </executable>
