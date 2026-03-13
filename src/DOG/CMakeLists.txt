@@ -1,4 +1,5 @@
-set(DOG_SOURCE DOG.cxx)
+set(DOG_SOURCE DOG.cxx
+        ../CurvatureAD/CurvatureAD.cxx)
 GENERATECLP(DOG_SOURCE DOG.xml)
 
 add_executable(DOG_sramtilak ${DOG_SOURCE})
