@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<executable>
+    <category>MIATT.HW04.sramtilak</category>
+    <title>GaussianLPF_sramtilak</title>
+    <description>Gaussian Low Pass Filter</description>
+    <version>1.0</version>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <license>Apache 2.0</license>
+    <contributor>Swati Ramtilak</contributor>
+
+    <parameters>
+        <label>Input-Output</label>
+        <description>Input and output volumes</description>
+
+        <image>
+            <name>inputVolume</name>
+            <longflag>inputVolume</longflag>
+            <label>Input Volume</label>
+            <channel>input</channel>
+            <description>Input image</description>
+        </image>
+
+        <image>
+            <name>outputVolume</name>
+            <longflag>outputVolume</longflag>
+            <label>Output Volume</label>
+            <channel>output</channel>
+            <description>Output image</description>
+        </image>
+
+    </parameters>
+
+    <parameters>
+        <label>Filtering</label>
+        <description>Gaussian filter parameter</description>
+
+        <double>
+            <name>sigma</name>
+            <longflag>sigma</longflag>
+            <label>Sigma</label>
+            <description>Gaussian sigma</description>
+        </double>
+
+    </parameters>
+
+</executable>
