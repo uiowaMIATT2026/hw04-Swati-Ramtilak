@@ -111,6 +111,10 @@ Experiment with various values of σ to see the tradeoff between smoothing and l
  In a few paragraphs, describe how changing the σ affects smoothing and loss of image resolution
 in the file hw04-{githubid}/src/GaussianLPF/README.md.
 
+### My Observations
+![Gaussian LPF Result](GaussianLPF.png)
+After applying the filter it smooths the image. Increasing the sigma increases the smoothing effect but also blurs out details in the original volume.
+
 ## Difference of Guassians (DOG)
 Store the source code for this part of the assignment in the hw04-{githubid}/src/DOG subdirectory.
 
@@ -142,6 +146,10 @@ Use  the  test  images  in  the  `${DATA}/data` and  `${DATA}/noisy directories`
 values of σ1 and σ2 and describe in a few paragraphs how the edge
  response changes in relation to these two values in the file hw04-{githubid}/src/DOG/README.md.
 
+### My Observations
+![DOG Result](DOG.png)
+with sigma1 = 2.5 and sigma2 = 3.5 amount of smoothing in both images is similar and thus the difference produces a weak edge response. To observe finer details sigma2>>sigma1.
+
 ## GradientAD
 
 Store the source code for this part of the assignment in the hw04-{githubid}/src/GradientAD
@@ -159,6 +167,10 @@ GradientAD_{hawkid} --inputVolume inimg.nii.gz \
 Experiment with various parameter values and document the parameters you choose that
 achieve good smoothing without losing too much edge detail in the file hw04-{githubid}/src/GradientAD/README.md
 
+### My Observations
+![GradientAD Result](GradientAD.png)
+with lowering conductance to 1.0, removing the number of iterations reduces the smoothing effect -- preserves the edge detail.
+
 ## CurvatureAD
 Store the source code for this part of the assignment in the hw04-{githubid}/src/CurvatureAD subdirectory.
 
@@ -172,3 +184,7 @@ CurvatureAD_{hawkid} --inputVolume inimg.nii.gz --conductance 2.0 \
 
 Experiment with various parameter values and document the parameters you choose that
 achieve good smoothing without losing too much edge detail in the file hw04-{githubid}/src/CurvatureAD/README.md
+
+### My Observations
+![CurvatureAD Result](CurvatureAD.png)
+with lowering conductance to 1.0, removing the number of iterations reduces the smoothing effect -- preserves the edge detail.
