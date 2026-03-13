@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<executable>
+    <category>MIATT.HW04.sramtilak</category>
+    <title>DOG_sramtilak</title>
+    <description>Difference of Gaussians</description>
+    <version>1.0</version>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <license>Apache 2.0</license>
+    <contributor>Swati Ramtilak</contributor>
+
+    <parameters>
+        <label>Input-Output</label>
+        <description>Input and output volumes</description>
+
+        <image>
+            <name>inputVolume</name>
+            <longflag>inputVolume</longflag>
+            <label>Input Volume</label>
+            <channel>input</channel>
+            <description>Input image</description>
+        </image>
+
+        <image>
+            <name>outputVolume</name>
+            <longflag>outputVolume</longflag>
+            <label>Output Volume</label>
+            <channel>output</channel>
+            <description>Output image</description>
+        </image>
+
+    </parameters>
+
+    <parameters>
+        <label>Filtering</label>
+        <description>Gaussian parameters</description>
+
+        <double>
+            <name>sigma1</name>
+            <longflag>sigma1</longflag>
+            <label>Sigma1</label>
+            <description>First Gaussian sigma</description>
+        </double>
+
+        <double>
+            <name>sigma2</name>
+            <longflag>sigma2</longflag>
+            <label>Sigma2</label>
+            <description>Second Gaussian sigma</description>
+        </double>
+
+    </parameters>
+
+</executable>
