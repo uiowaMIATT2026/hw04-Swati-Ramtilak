@@ -1,6 +1,5 @@
-set(DOG_SOURCE DOG.cxx
-        ../CurvatureAD/CurvatureAD.cxx)
+set(DOG_SOURCE DOG.cxx)
 GENERATECLP(DOG_SOURCE DOG.xml)
 
-add_executable(DOG_sramtilak ${DOG_SOURCE})
-target_link_libraries(DOG_sramtilak ${ITK_LIBRARIES})
+add_executable(DOG_${MYHAWKID} ${DOG_SOURCE})
+target_link_libraries(DOG_${MYHAWKID} ${ITK_LIBRARIES})

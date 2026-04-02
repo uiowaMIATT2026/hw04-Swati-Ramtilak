@@ -32,20 +32,30 @@
 
     <parameters>
         <label>Filtering</label>
-        <description>Gaussian parameters</description>
+        <description>Gaussian smoothing parameters for DoG</description>
 
         <double>
             <name>sigma1</name>
             <longflag>sigma1</longflag>
             <label>Sigma1</label>
-            <description>First Gaussian sigma</description>
+            <description>First Gaussian sigma, controls fine scale smoothing</description>
+            <default>1.0</default>
+            <constraints>
+                <minimum>0.1</minimum>
+                <maximum>20.0</maximum>
+            </constraints>
         </double>
 
         <double>
             <name>sigma2</name>
             <longflag>sigma2</longflag>
             <label>Sigma2</label>
-            <description>Second Gaussian sigma</description>
+            <description>Second Gaussian sigma, coarse smoothing</description>
+            <default>2.0</default>
+            <constraints>
+                <minimum>0.1</minimum>
+                <maximum>30.0</maximum>
+            </constraints>
         </double>
 
     </parameters>
