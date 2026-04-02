@@ -32,15 +32,18 @@
 
     <parameters>
         <label>Filtering</label>
-        <description>Gaussian filter parameter</description>
+        <description>Gaussian smoothing parameter</description>
 
         <double>
             <name>sigma</name>
             <longflag>sigma</longflag>
             <label>Sigma</label>
-            <description>Gaussian sigma</description>
+            <description>Standard deviation of the Gaussian kernel</description>
+            <default>1.0</default>
+            <constraints>
+                <minimum>0.1</minimum>
+                <maximum>20.0</maximum>
+            </constraints>
         </double>
-
     </parameters>
-
 </executable>
