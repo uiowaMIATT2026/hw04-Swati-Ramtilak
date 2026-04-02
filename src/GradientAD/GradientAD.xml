@@ -37,7 +37,12 @@
             <name>conductance</name>
             <longflag>conductance</longflag>
             <label>Conductance</label>
-            <description>Conductance parameter</description>
+            <description>Conductance parameter - Controls sensitivity to edges</description>
+            <default>1.0</default>
+            <constraints>
+                <minimum>0.1</minimum>
+                <maximum>10.0</maximum>
+            </constraints>
         </double>
 
         <double>
@@ -45,6 +50,11 @@
             <longflag>timeStep</longflag>
             <label>Time Step</label>
             <description>Time step</description>
+            <default>0.05</default>
+            <constraints>
+                <minimum>0.001</minimum>
+                <maximum>0.25</maximum>
+            </constraints>
         </double>
 
         <integer>
@@ -52,6 +62,11 @@
             <longflag>iterations</longflag>
             <label>Iterations</label>
             <description>Number of iterations</description>
+            <default>5</default>
+            <constraints>
+                <minimum>1</minimum>
+                <maximum>50</maximum>
+            </constraints>
         </integer>
 
     </parameters>
