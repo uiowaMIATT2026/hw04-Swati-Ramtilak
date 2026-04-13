@@ -2,62 +2,69 @@
 <executable>
     <category>MIATT.HW04.sramtilak</category>
     <title>DOG_sramtilak</title>
-    <description>Difference of Gaussians</description>
+    <description>Computes the Difference of Gaussians (DOG = G_sigma1(f) - G_sigma2(f)) to
+      enhance edges in a 3D image. Two independent Gaussian low-pass filters with different
+      sigma values are applied and subtracted. The output is rescaled so that the minimum
+      maps to 0 and the maximum maps to 255 (unsigned char). Requires sigma1 != sigma2;
+      larger separation between sigmas increases edge sensitivity at coarser scales.</description>
     <version>1.0</version>
-    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak/blob/main/src/DOG</documentation-url>
     <license>Apache 2.0</license>
-    <contributor>Swati Ramtilak</contributor>
+    <contributor>Swati Ramtilak (sramtilak)</contributor>
+    <acknowledgements>ITK RecursiveGaussianImageFilter, SubtractImageFilter, RescaleIntensityImageFilter.
+      ITK Software Guide Book 2, Chapter 2.</acknowledgements>
 
     <parameters>
-        <label>Input-Output</label>
-        <description>Input and output volumes</description>
+        <label>Input/Output</label>
+        <description>Input and output volume file paths</description>
 
         <image>
-            <name>inputVolume</name>
+            <n>inputVolume</n>
             <longflag>inputVolume</longflag>
             <label>Input Volume</label>
             <channel>input</channel>
-            <description>Input image</description>
+            <description>3D input image on which the DOG edge-enhancement filter is applied.</description>
         </image>
 
         <image>
-            <name>outputVolume</name>
+            <n>outputVolume</n>
             <longflag>outputVolume</longflag>
             <label>Output Volume</label>
             <channel>output</channel>
-            <description>Output image</description>
+            <description>Edge-enhanced DOG output image rescaled to unsigned char [0, 255].</description>
         </image>
-
     </parameters>
 
     <parameters>
-        <label>Filtering</label>
-        <description>Gaussian smoothing parameters for DoG</description>
+        <label>Filter Parameters</label>
+        <description>Sigma values for the two Gaussian kernels. Requires sigma1 != sigma2.</description>
 
         <double>
-            <name>sigma1</name>
+            <n>sigma1</n>
             <longflag>sigma1</longflag>
-            <label>Sigma1</label>
-            <description>First Gaussian sigma, controls fine scale smoothing</description>
+            <label>Sigma 1 (mm)</label>
+            <description>Standard deviation of the first (finer-scale) Gaussian kernel.
+              Should be smaller than sigma2. Controls sensitivity to fine edges.</description>
             <default>1.0</default>
             <constraints>
                 <minimum>0.1</minimum>
                 <maximum>20.0</maximum>
+                <step>0.1</step>
             </constraints>
         </double>
 
         <double>
-            <name>sigma2</name>
+            <n>sigma2</n>
             <longflag>sigma2</longflag>
-            <label>Sigma2</label>
-            <description>Second Gaussian sigma, coarse smoothing</description>
+            <label>Sigma 2 (mm)</label>
+            <description>Standard deviation of the second (coarser-scale) Gaussian kernel.
+              Should be larger than sigma1. Controls the scale of detected edges.</description>
             <default>2.0</default>
             <constraints>
                 <minimum>0.1</minimum>
                 <maximum>30.0</maximum>
+                <step>0.1</step>
             </constraints>
         </double>
-
     </parameters>
-
 </executable>

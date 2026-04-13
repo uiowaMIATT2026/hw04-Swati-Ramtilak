@@ -2,42 +2,50 @@
 <executable>
     <category>MIATT.HW04.sramtilak</category>
     <title>CurvatureAD_sramtilak</title>
-    <description>Curvature Anisotropic Diffusion</description>
+    <description>Applies curvature anisotropic diffusion (itk::CurvatureAnisotropicDiffusionImageFilter)
+      to a 3D float image. Unlike gradient anisotropic diffusion, this filter uses local
+      image curvature (second-order geometry) to guide diffusion, which tends to produce
+      smoother, more rounded edges and better noise suppression in flat regions. Lower
+      conductance values better preserve edge sharpness. More iterations increase overall
+      smoothing.</description>
     <version>1.0</version>
-    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak/blob/main/src/CurvatureAD</documentation-url>
     <license>Apache 2.0</license>
-    <contributor>Swati Ramtilak</contributor>
+    <contributor>Swati Ramtilak (sramtilak)</contributor>
+    <acknowledgements>ITK CurvatureAnisotropicDiffusionImageFilter. ITK Software Guide Book 2, Chapter 3.</acknowledgements>
 
     <parameters>
-        <label>Input-Output</label>
-        <description>Input and output volumes</description>
+        <label>Input/Output</label>
+        <description>Input and output volume file paths</description>
 
         <image>
-            <name>inputVolume</name>
+            <n>inputVolume</n>
             <longflag>inputVolume</longflag>
             <label>Input Volume</label>
             <channel>input</channel>
-            <description>Input image</description>
+            <description>3D input image to be filtered by curvature anisotropic diffusion.</description>
         </image>
 
         <image>
-            <name>outputVolume</name>
+            <n>outputVolume</n>
             <longflag>outputVolume</longflag>
             <label>Output Volume</label>
             <channel>output</channel>
-            <description>Output image</description>
+            <description>Curvature anisotropic diffusion filtered 3D output image.</description>
         </image>
     </parameters>
 
     <parameters>
-        <label>Filtering</label>
-        <description>Diffusion parameters</description>
+        <label>Filter Parameters</label>
+        <description>Controls for diffusion strength, numerical stability, and iteration count</description>
 
         <double>
-            <name>conductance</name>
+            <n>conductance</n>
             <longflag>conductance</longflag>
             <label>Conductance</label>
-            <description>Conductance parameter</description>
+            <description>Controls edge sensitivity of the diffusion process. Lower values (0.5-1.5)
+              strongly inhibit diffusion across edges, preserving structural boundaries.
+              Higher values (3.0+) allow diffusion across edges for more aggressive noise removal.</description>
             <default>2.0</default>
             <constraints>
                 <minimum>0.01</minimum>
@@ -47,23 +55,27 @@
         </double>
 
         <double>
-            <name>timeStep</name>
+            <n>timeStep</n>
             <longflag>timeStep</longflag>
             <label>Time Step</label>
-            <description>Time step</description>
+            <description>Numerical integration step size. Must satisfy the stability condition
+              (timeStep &lt;= 0.0625 for 3D curvature diffusion). Smaller values improve
+              numerical stability at the cost of requiring more iterations.</description>
             <default>0.05</default>
             <constraints>
                 <minimum>0.001</minimum>
-                <maximum>0.1</maximum>
+                <maximum>0.0625</maximum>
                 <step>0.005</step>
             </constraints>
         </double>
 
         <integer>
-            <name>iterations</name>
+            <n>iterations</n>
             <longflag>iterations</longflag>
             <label>Iterations</label>
-            <description>Number of iterations</description>
+            <description>Number of curvature diffusion update steps to apply. More iterations
+              result in stronger smoothing. Values of 5-15 provide moderate denoising;
+              values above 20 may over-smooth fine anatomical structures.</description>
             <default>5</default>
             <constraints>
                 <minimum>1</minimum>
@@ -72,5 +84,4 @@
             </constraints>
         </integer>
     </parameters>
-
 </executable>

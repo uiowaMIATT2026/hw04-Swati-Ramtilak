@@ -2,47 +2,53 @@
 <executable>
     <category>MIATT.HW04.sramtilak</category>
     <title>GaussianLPF_sramtilak</title>
-    <description>Gaussian Low Pass Filter</description>
+    <description>Applies a 3D recursive Gaussian low-pass filter (itk::RecursiveGaussianImageFilter)
+      to reduce noise in a 3D image. The same sigma value is applied independently along
+      the X, Y, and Z axes. Larger sigma values produce stronger smoothing at the cost of
+      spatial resolution</description>
     <version>1.0</version>
-    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak/blob/main/src/GaussianLPF</documentation-url>
     <license>Apache 2.0</license>
-    <contributor>Swati Ramtilak</contributor>
+    <contributor>Swati Ramtilak (sramtilak)</contributor>
+    <acknowledgements>ITK RecursiveGaussianImageFilter. ITK Software Guide Book 2, Chapter 2.</acknowledgements>
 
     <parameters>
-        <label>Input-Output</label>
-        <description>Input and output volumes</description>
+        <label>Input/Output</label>
+        <description>Input and output volume file paths</description>
 
         <image>
-            <name>inputVolume</name>
+            <n>inputVolume</n>
             <longflag>inputVolume</longflag>
             <label>Input Volume</label>
             <channel>input</channel>
-            <description>Input image</description>
+            <description>3D input image to be smoothed with Gaussian low-pass filter.</description>
         </image>
 
         <image>
-            <name>outputVolume</name>
+            <n>outputVolume</n>
             <longflag>outputVolume</longflag>
             <label>Output Volume</label>
             <channel>output</channel>
-            <description>Output image</description>
+            <description>Gaussian-smoothed 3D output image.</description>
         </image>
-
     </parameters>
 
     <parameters>
-        <label>Filtering</label>
-        <description>Gaussian smoothing parameter</description>
+        <label>Filter Parameters</label>
+        <description>Gaussian kernel width controlling the degree of smoothing</description>
 
         <double>
-            <name>sigma</name>
+            <n>sigma</n>
             <longflag>sigma</longflag>
-            <label>Sigma</label>
-            <description>Standard deviation of the Gaussian kernel</description>
+            <label>Sigma (mm)</label>
+            <description>Standard deviation of the isotropic Gaussian kernel applied in X, Y, and Z.
+              Small values (0.5-1.5 mm) remove fine noise while preserving edges.
+              Large values (3.0+ mm) aggressively smooth but blur structural boundaries.</description>
             <default>1.0</default>
             <constraints>
                 <minimum>0.1</minimum>
                 <maximum>20.0</maximum>
+                <step>0.1</step>
             </constraints>
         </double>
     </parameters>

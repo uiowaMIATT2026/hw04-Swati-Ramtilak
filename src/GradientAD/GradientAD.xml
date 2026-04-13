@@ -2,73 +2,85 @@
 <executable>
     <category>MIATT.HW04.sramtilak</category>
     <title>GradientAD_sramtilak</title>
-    <description>Gradient Anisotropic Diffusion</description>
+    <description>Applies gradient anisotropic diffusion (itk::GradientAnisotropicDiffusionImageFilter)
+      to a 3D float image. Anisotropic diffusion smooths homogeneous regions while preserving
+      edges by using the image gradient magnitude to modulate diffusion strength. Lower
+      conductance values concentrate smoothing away from edges. More iterations increase
+      overall smoothing</description>
     <version>1.0</version>
-    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git</documentation-url>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak/blob/main/src/GradientAD</documentation-url>
     <license>Apache 2.0</license>
-    <contributor>Swati Ramtilak</contributor>
+    <contributor>Swati Ramtilak (sramtilak)</contributor>
+    <acknowledgements>ITK GradientAnisotropicDiffusionImageFilter. ITK Software Guide Book 2, Chapter 3.</acknowledgements>
 
     <parameters>
-        <label>Input-Output</label>
-        <description>Input and output volumes</description>
+        <label>Input/Output</label>
+        <description>Input and output volume file paths</description>
 
         <image>
-            <name>inputVolume</name>
+            <n>inputVolume</n>
             <longflag>inputVolume</longflag>
             <label>Input Volume</label>
             <channel>input</channel>
-            <description>Input image</description>
+            <description>3D input image to be filtered by gradient anisotropic diffusion.</description>
         </image>
 
         <image>
-            <name>outputVolume</name>
+            <n>outputVolume</n>
             <longflag>outputVolume</longflag>
             <label>Output Volume</label>
             <channel>output</channel>
-            <description>Output image</description>
+            <description>Gradient anisotropic diffusion filtered 3D output image.</description>
         </image>
     </parameters>
 
     <parameters>
-        <label>Filtering</label>
-        <description>Diffusion parameters</description>
+        <label>Filter Parameters</label>
+        <description>Controls for diffusion strength, stability, and number of update steps</description>
 
         <double>
-            <name>conductance</name>
+            <n>conductance</n>
             <longflag>conductance</longflag>
             <label>Conductance</label>
-            <description>Conductance parameter - Controls sensitivity to edges</description>
+            <description>Controls sensitivity to edges. Lower values (0.5-1.0) preserve edges
+              more strongly by inhibiting diffusion across high-gradient boundaries.
+              Higher values (3.0+) allow more diffusion across edges, reducing noise more
+              aggressively at the cost of edge blurring.</description>
             <default>1.0</default>
             <constraints>
                 <minimum>0.1</minimum>
                 <maximum>10.0</maximum>
+                <step>0.1</step>
             </constraints>
         </double>
 
         <double>
-            <name>timeStep</name>
+            <n>timeStep</n>
             <longflag>timeStep</longflag>
             <label>Time Step</label>
-            <description>Time step</description>
+            <description>Numerical integration time step. Must satisfy stability criterion
+              (timeStep &lt;= 0.125 for 3D). Smaller values are more stable but require
+              more iterations to achieve the same smoothing effect.</description>
             <default>0.05</default>
             <constraints>
                 <minimum>0.001</minimum>
-                <maximum>0.25</maximum>
+                <maximum>0.125</maximum>
+                <step>0.005</step>
             </constraints>
         </double>
 
         <integer>
-            <name>iterations</name>
+            <n>iterations</n>
             <longflag>iterations</longflag>
             <label>Iterations</label>
-            <description>Number of iterations</description>
+            <description>Number of diffusion update steps. More iterations produce stronger
+              smoothing. Typical values are 5-20 for moderate denoising.</description>
             <default>5</default>
             <constraints>
                 <minimum>1</minimum>
                 <maximum>50</maximum>
+                <step>1</step>
             </constraints>
         </integer>
-
     </parameters>
-
 </executable>
