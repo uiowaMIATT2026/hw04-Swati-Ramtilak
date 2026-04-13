@@ -2,65 +2,93 @@
 <executable>
     <category>MIATT.HW04.sramtilak</category>
     <title>SimpleThreshold_sramtilak</title>
-    <description>Simple Threshold Filter</description>
+    <description>Applies a binary threshold to a 3D signed-short NIFTI image. Pixels whose
+      intensity falls within [lowThreshold, highThreshold] are set to insideValue;
+      all other pixels are set to outsideValue</description>
     <version>1.0</version>
-    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak.git/main/src/SimpleThreshold</documentation-url>
+    <documentation-url>https://github.com/uiowaMIATT2026/hw04-Swati-Ramtilak/blob/main/src/SimpleThreshold</documentation-url>
     <license>Apache 2.0</license>
-    <contributor>Swati Ramtilak</contributor>
+    <contributor>Swati Ramtilak (sramtilak)</contributor>
+    <acknowledgements>ITK BinaryThresholdImageFilter. ITK Software Guide Figure 6.1.</acknowledgements>
 
     <parameters>
-        <label>Input-Output</label>
-        <description>Input and output volume parameters</description>
+        <label>Input/Output</label>
+        <description>Input and output volume file paths</description>
 
         <image>
             <name>inputVolume</name>
             <longflag>inputVolume</longflag>
-            <label>Input-Volume</label>
+            <label>Input Volume</label>
             <channel>input</channel>
-            <description>3D NIFTI image</description>
+            <description>3D signed-short NIFTI image to threshold.</description>
         </image>
 
         <image>
             <name>outputVolume</name>
             <longflag>outputVolume</longflag>
-            <label>Output-Volume</label>
+            <label>Output Volume</label>
             <channel>output</channel>
-            <description>3D NIFTI image</description>
+            <description>Thresholded 3D output image written in NIFTI format.</description>
         </image>
-
     </parameters>
 
     <parameters>
-        <label>Thresholding-Parameters</label>
-        <description>Thresholding parameters</description>
+        <label>Thresholding Parameters</label>
+        <description>Define the intensity window and replacement values for inside/outside pixels</description>
 
         <double>
             <name>lowThreshold</name>
             <longflag>lowThreshold</longflag>
-            <label>Low-Threshold</label>
-            <description>The lower threshold value</description>
+            <label>Low Threshold</label>
+            <description>Lower bound of the threshold window. Pixels with intensity >= lowThreshold
+              and <= highThreshold are classified as inside.</description>
+            <default>50</default>
+            <constraints>
+                <minimum>-32768</minimum>
+                <maximum>32767</maximum>
+                <step>1</step>
+            </constraints>
         </double>
 
         <double>
             <name>highThreshold</name>
             <longflag>highThreshold</longflag>
-            <label>High-Threshold</label>
-            <description>The upper threshold value</description>
+            <label>High Threshold</label>
+            <description>Upper bound of the threshold window. Must be greater than lowThreshold.</description>
+            <default>100</default>
+            <constraints>
+                <minimum>-32768</minimum>
+                <maximum>32767</maximum>
+                <step>1</step>
+            </constraints>
         </double>
 
         <double>
             <name>outsideValue</name>
             <longflag>outsideValue</longflag>
-            <label>Outside-Value</label>
-            <description>Value for pixels outside threshold range</description>
+            <label>Outside Value</label>
+            <description>Pixel intensity assigned to voxels whose original value falls outside
+              [lowThreshold, highThreshold].</description>
+            <default>0</default>
+            <constraints>
+                <minimum>-32768</minimum>
+                <maximum>32767</maximum>
+                <step>1</step>
+            </constraints>
         </double>
 
         <double>
             <name>insideValue</name>
             <longflag>insideValue</longflag>
-            <label>Inside-Value</label>
-            <description>Value for pixels inside threshold range</description>
+            <label>Inside Value</label>
+            <description>Pixel intensity assigned to voxels whose original value falls within
+              [lowThreshold, highThreshold].</description>
+            <default>255</default>
+            <constraints>
+                <minimum>-32768</minimum>
+                <maximum>32767</maximum>
+                <step>1</step>
+            </constraints>
         </double>
-
     </parameters>
 </executable>
